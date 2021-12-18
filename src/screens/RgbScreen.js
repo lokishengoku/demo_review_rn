@@ -3,13 +3,13 @@ import { StyleSheet, View } from "react-native";
 import ColorAdjuster from "../components/ColorAdjuster";
 
 const reducer = (state, action) => {
-  switch (action.color) {
-    case "red":
-      return { ...state, red: state.red + action.amount };
-    case "green":
-      return { ...state, green: state.green + action.amount };
-    case "blue":
-      return { ...state, blue: state.blue + action.amount };
+  switch (action.type) {
+    case "change_red":
+      return { ...state, red: state.red + action.payload };
+    case "change_green":
+      return { ...state, green: state.green + action.payload };
+    case "change_blue":
+      return { ...state, blue: state.blue + action.payload };
     default:
       return state;
   }
@@ -25,18 +25,18 @@ export default function RgbScreen() {
     <View style={styles.container}>
       <ColorAdjuster
         title="Red"
-        onIncrease={() => dispatch({ color: "red", amount: 10 })}
-        onDecrease={() => dispatch({ color: "red", amount: -10 })}
+        onIncrease={() => dispatch({ type: "change_red", payload: 10 })}
+        onDecrease={() => dispatch({ type: "change_red", payload: -10 })}
       />
       <ColorAdjuster
         title="Green"
-        onIncrease={() => dispatch({ color: "green", amount: 10 })}
-        onDecrease={() => dispatch({ color: "green", amount: -10 })}
+        onIncrease={() => dispatch({ type: "change_green", payload: 10 })}
+        onDecrease={() => dispatch({ type: "change_green", payload: -10 })}
       />
       <ColorAdjuster
         title="Blue"
-        onIncrease={() => dispatch({ color: "blue", amount: 10 })}
-        onDecrease={() => dispatch({ color: "blue", amount: -10 })}
+        onIncrease={() => dispatch({ type: "change_blue", payload: 10 })}
+        onDecrease={() => dispatch({ type: "change_blue", payload: -10 })}
       />
       <View
         style={{
